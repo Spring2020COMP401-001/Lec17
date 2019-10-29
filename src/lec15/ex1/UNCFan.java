@@ -1,4 +1,4 @@
-package lec17.ex1;
+package lec15.ex1;
 
 public class UNCFan implements GameObserver {
 

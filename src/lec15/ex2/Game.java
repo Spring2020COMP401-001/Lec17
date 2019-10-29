@@ -1,4 +1,4 @@
-package lec17.ex1;
+package lec15.ex2;
 
 public interface Game {
 
