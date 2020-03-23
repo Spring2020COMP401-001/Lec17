@@ -1,4 +1,4 @@
-package lec15.ex3;
+package lec17.ex3;
 
 public class DukeFan implements GameObserver {
 

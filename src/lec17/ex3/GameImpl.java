@@ -1,4 +1,4 @@
-package lec15.ex1;
+package lec17.ex3;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -8,14 +8,17 @@ public class GameImpl implements Game {
 	private String visitor;
 	private int home_score;
 	private int visitor_score;
-	
+	private String sport;
+
 	private List<GameObserver> observers;
-	
-	public GameImpl(String visiting_team, String home_team) {
+
+	public GameImpl(String game_type, String visiting_team, String home_team) {
+		sport = game_type;
 		home = home_team;
 		visitor = visiting_team;
 		home_score = 0;
 		visitor_score = 0;
+		
 		observers = new ArrayList<GameObserver>();
 	}
 
@@ -32,14 +35,14 @@ public class GameImpl implements Game {
 	}
 
 	@Override
-	public void notifyObservers() {
+	public void notifyObservers(String who_scored) {
 		// Trigger update method on
 		// all observers
 		for (GameObserver o : observers) {
-			o.update();
+			o.update(this, who_scored);
 		}
 	}
-
+	
 	@Override
 	public void scorePoints(String team, int points_to_add) {
 		if (home.equals(team)) {
@@ -47,12 +50,12 @@ public class GameImpl implements Game {
 		} else if (visitor.equals(team)) {
 			visitor_score += points_to_add;
 		}
-		notifyObservers();
+		notifyObservers(team);
 	}
 	
 	@Override
 	public void printScore() {
-		System.out.println(visitor + " " + visitor_score + " - " + home_score + " " + home);
+		System.out.println(sport + ": " + visitor + " " + visitor_score + " - " + home_score + " " + home);
 	}
 	
 	@Override

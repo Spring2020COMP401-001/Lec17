@@ -1,8 +1,15 @@
-package lec15.ex2;
+package lec17.ex1;
 
 public class DukeFan implements GameObserver {
 
-	public void update(Game game) {
+	private Game game;
+	
+	public DukeFan(Game g) {
+		game = g;
+		game.addObserver(this);
+	}
+	
+	public void update() {
 		if (game.whoIsWinning().equals("Duke")) {
 			System.out.println("Go Devils!");
 		}
